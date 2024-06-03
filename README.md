@@ -6,9 +6,11 @@
 
 
 We use the simpler function $R_i(x)$​ to replace the B-spline function in KAN as the new basis function:
+
 $$
 R_i(x) = [\text{ReLU}(e_i - x)\times \text{ReLU}(x-s_i)]^2 \times 16 / (e_i - s_i)^4 \tag{6}
 $$
+
 where, $\text{ReLU}(x) = \text{max}(0, x)$.
 
 Like $B_i(x)$, $R_i(x)$ is also a unary bell-shaped function, 
