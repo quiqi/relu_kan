@@ -6,13 +6,15 @@
 
 
 We use the simpler function $R_i(x)$​ to replace the B-spline function in KAN as the new basis function:
+
 $$
 R_i(x) = [\text{ReLU}(e_i - x)\times \text{ReLU}(x-s_i)]^2 \times 16 / (e_i - s_i)^4 \tag{6}
 $$
+
 where, $\text{ReLU}(x) = \text{max}(0, x)$.
 
 Like $B_i(x)$, $R_i(x)$ is also a unary bell-shaped function, 
-which is nonzero at $x \in [s_i, e_i]$and zero at other intervals. 
+which is nonzero at $x \in [s_i, e_i]$ and zero at other intervals. 
 The $\text{ReLU}(x)$ function is used to limit the range of nonzero values, 
 and the squaring operation is used to increase the smoothness of the function. 
 $16 / (e_i - s_i)^4$ for normalization. As next:
@@ -25,9 +27,21 @@ we can turn the whole training process of KAN into a complete matrix operation p
 
 $$
 \boldsymbol{x}_1 = ReLU(\boldsymbol{e} - \boldsymbol{x})\\
+$$
+
+$$
 \boldsymbol{x}_2 = ReLU(\boldsymbol{x} - \boldsymbol{s})\\
+$$
+
+$$
 \boldsymbol{x}_3 = r\times \boldsymbol{x}_1 \cdot \boldsymbol{x}_2\\
+$$
+
+$$
 \boldsymbol{x}_4 = \boldsymbol{x}_3 \cdot \boldsymbol{x}_3\\
+$$
+
+$$
 \boldsymbol{y} = C(\boldsymbol{x}_4)
 $$
 
