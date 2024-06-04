@@ -19,7 +19,7 @@ if __name__ == '__main__':
 
     plt.ion()
     losses = []
-    for e in range(1000):
+    for e in range(5000):
         opt.zero_grad()
         pred = relu_kan(x)
         loss = mse(pred[:, :, 0], y)
