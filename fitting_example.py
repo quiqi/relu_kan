@@ -8,7 +8,7 @@ if __name__ == '__main__':
     # skan = ReLUKANLayer(1, 100, 20, 1)
     relu_kan = ReLUKAN([1, 1], 5, 3)
     x = torch.Tensor([np.arange(0, 1024) / 1024]).T
-    y = torch.sin(torch.pi*x)
+    y = torch.sin(5*torch.pi*x)
     if torch.cuda.is_available():
         relu_kan = relu_kan.cuda()
         x = x.cuda()

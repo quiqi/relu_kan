@@ -2,17 +2,18 @@ import numpy as np
 import torch
 import torch.nn as nn
 
+
 class ReLUKANLayer(nn.Module):
-    def __init__(self, input_size: int, g: int, k: int, output_size: int):
+    def __init__(self, input_size: int, g: int, k: int, output_size: int, train_ab: bool = True):
         super().__init__()
         self.g, self.k, self.r = g, k, 4*g*g / ((k+1)*(k+1))
         self.input_size, self.output_size = input_size, output_size
         phase_low = np.arange(-k, g) / g
         phase_height = phase_low + (k+1) / g
         self.phase_low = nn.Parameter(torch.Tensor(np.array([phase_low for i in range(input_size)])),
-                                      requires_grad=False)
+                                      requires_grad=train_ab)
         self.phase_height = nn.Parameter(torch.Tensor(np.array([phase_height for i in range(input_size)])),
-                                         requires_grad=False)
+                                         requires_grad=train_ab)
         self.equal_size_conv = nn.Conv2d(1, output_size, (g+k, input_size))
     def forward(self, x):
         x1 = torch.relu(x - self.phase_low)

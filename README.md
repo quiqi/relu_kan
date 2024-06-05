@@ -4,7 +4,12 @@
 > than 30 lines of core code, but 20 times faster and 
 > two orders of magnitude more accurate than the original KAN.
 
+# Latest Update
+We've added a new parameter to relu-kan, train_se, 
+which can be set to true to allow the start and end points of each basis function to be trained as trainable parameters, 
+further improving the model's fitting ability.
 
+# Body
 We use the simpler function $R_i(x)$​ to replace the B-spline function in KAN as the new basis function:
 
 $$
